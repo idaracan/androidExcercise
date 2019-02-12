@@ -4,15 +4,11 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.androidexcercise.R
-
-import com.example.androidexcercise.data.dummy.DummyContent
-import com.example.androidexcercise.data.dummy.DummyContent.DummyItem
 import com.example.androidexcercise.network.ServiceVolley
 import com.example.androidexcercise.utils.JSONUtils
 
@@ -23,8 +19,7 @@ import com.example.androidexcercise.utils.JSONUtils
  */
 class CommentFragment : Fragment() {
 
-    // TODO: Customize parameters
-    private var columnCount = 1
+    private var postId = 1
 
     private var listener: OnListFragmentInteractionListener? = null
 
@@ -32,7 +27,7 @@ class CommentFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
+            postId = it.getInt(POST_ID)
         }
     }
 
@@ -45,13 +40,10 @@ class CommentFragment : Fragment() {
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-
+                layoutManager = GridLayoutManager(context, 1)
+                
                 val service = ServiceVolley()
-                val url = "http://excercise.born-to-create.de/posts/1/comments"
+                val url = "http://excercise.born-to-create.de/posts/$postId/comments"
 
                 service.get(url){
                         response ->
@@ -76,33 +68,20 @@ class CommentFragment : Fragment() {
         listener = null
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson
-     * [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onListFragmentInteraction(item: Comment?)
     }
 
     companion object {
 
         // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
+        const val POST_ID = "column-count"
+        
         @JvmStatic
-        fun newInstance(columnCount: Int) =
+        fun newInstance(postId: Int) =
             CommentFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
+                    putInt(POST_ID, postId)
                 }
             }
     }

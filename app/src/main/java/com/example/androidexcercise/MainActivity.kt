@@ -9,10 +9,8 @@ import com.example.androidexcercise.data.Comment
 import com.example.androidexcercise.data.CommentFragment
 import com.example.androidexcercise.data.Post
 import com.example.androidexcercise.data.PostFragment
-import com.example.androidexcercise.data.dummy.DummyContent
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.fragment_post.*
 
 class MainActivity : AppCompatActivity(), PostFragment.OnListFragmentInteractionListener, CommentFragment.OnListFragmentInteractionListener {
 
@@ -21,7 +19,7 @@ class MainActivity : AppCompatActivity(), PostFragment.OnListFragmentInteraction
     }
 
     override fun onListFragmentInteraction(item: Post?) {
-        val commentFragment = CommentFragment.newInstance(1)
+        val commentFragment = CommentFragment.newInstance(item!!.id)
         supportFragmentManager.beginTransaction()
             .replace(mainScreen.id, commentFragment).addToBackStack(null).commit()
     }
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity(), PostFragment.OnListFragmentInteraction
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        val postFragment = PostFragment.newInstance(1)
+        val postFragment = PostFragment.newInstance()
         supportFragmentManager.beginTransaction()
             .replace(mainScreen.id, postFragment).addToBackStack(null).commit()
 

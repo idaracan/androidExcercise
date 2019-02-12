@@ -1,13 +1,9 @@
 package com.example.androidexcercise.utils
 
 import android.util.Log
-import android.widget.Toast
-import com.example.androidexcercise.MainActivity
 import com.example.androidexcercise.data.Comment
 import com.example.androidexcercise.data.Post
 import org.json.JSONArray
-import java.lang.Exception
-import kotlin.math.log
 
 class JSONUtils {
 

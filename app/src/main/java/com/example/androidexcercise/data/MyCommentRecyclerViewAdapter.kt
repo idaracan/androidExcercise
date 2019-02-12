@@ -9,14 +9,12 @@ import com.example.androidexcercise.R
 
 
 import com.example.androidexcercise.data.CommentFragment.OnListFragmentInteractionListener
-import com.example.androidexcercise.data.dummy.DummyContent.DummyItem
 
 import kotlinx.android.synthetic.main.fragment_comment.view.*
 
 /**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
+ * [RecyclerView.Adapter] that can display a [Comment] and makes a call to the
  * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
  */
 class MyCommentRecyclerViewAdapter(
     private val mValues: List<Comment>,
@@ -28,8 +26,6 @@ class MyCommentRecyclerViewAdapter(
     init {
         mOnClickListener = View.OnClickListener { v ->
             val item = v.tag as Comment
-            // Notify the active callbacks interface (the activity, if the fragment is attached to
-            // one) that an item has been selected.
             mListener?.onListFragmentInteraction(item)
         }
     }
