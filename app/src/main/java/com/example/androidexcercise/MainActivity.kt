@@ -21,7 +21,9 @@ class MainActivity : AppCompatActivity(), PostFragment.OnListFragmentInteraction
     override fun onListFragmentInteraction(item: Post?) {
         val commentFragment = CommentFragment.newInstance(item!!.id)
         supportFragmentManager.beginTransaction()
-            .replace(mainScreen.id, commentFragment).addToBackStack(null).commit()
+            .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+            .replace(mainScreen.id, commentFragment).addToBackStack(null)
+            .commit()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
