@@ -3,7 +3,8 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:orientation="vertical"
-              android:padding="@dimen/text_margin">
+              android:padding="@dimen/text_margin"
+              android:id="@+id/fragmentPost">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -33,12 +34,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?attr/textAppearanceListItem"/>
-
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="20dp"/>
+        <TextView
+            android:layout_toRightOf="@id/thumbnail"
             android:text="content"
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/text_margin"
             android:textAppearance="?attr/textAppearanceListItem"/>
+    </RelativeLayout>
+
 </LinearLayout>

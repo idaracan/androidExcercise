@@ -7,12 +7,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_main"
-        tools:context=".MainActivity">
-
-    <fragment
-            android:id="@+id/postFrag"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="com.example.androidexcercise.data.PostFragment"/>
+        tools:context=".MainActivity"
+        android:id="@+id/mainScreen">
 
 </android.support.constraint.ConstraintLayout>

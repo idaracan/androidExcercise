@@ -1,7 +1,13 @@
 package com.example.androidexcercise.utils
 
+import android.util.Log
+import android.widget.Toast
+import com.example.androidexcercise.MainActivity
+import com.example.androidexcercise.data.Comment
 import com.example.androidexcercise.data.Post
 import org.json.JSONArray
+import java.lang.Exception
+import kotlin.math.log
 
 class JSONUtils {
 
@@ -16,6 +22,22 @@ class JSONUtils {
                     post.getString("content")))
             }
             return postList
+        }
+
+        fun parseComments(comments: JSONArray): List<Comment> {
+            val commentList: ArrayList<Comment> = ArrayList()
+            for (i in 0 until comments.length()){
+                val comments = comments.getJSONObject(i)
+                try {
+                    commentList.add(Comment(comments.getInt("id"),
+                        comments.getInt("post_id"), comments.getString("author"),
+                        comments.getString("email"), comments.getString("comment")))
+                }catch (e: Exception){
+                    Log.e("error:", e.toString())
+                }
+
+            }
+            return commentList
         }
     }
 }

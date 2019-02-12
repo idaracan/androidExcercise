@@ -10,15 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.androidexcercise.R
+
+import com.example.androidexcercise.data.dummy.DummyContent
+import com.example.androidexcercise.data.dummy.DummyContent.DummyItem
 import com.example.androidexcercise.network.ServiceVolley
 import com.example.androidexcercise.utils.JSONUtils
 
 /**
  * A fragment representing a list of Items.
  * Activities containing this fragment MUST implement the
- * [PostFragment.OnListFragmentInteractionListener] interface.
+ * [CommentFragment.OnListFragmentInteractionListener] interface.
  */
-class PostFragment : Fragment() {
+class CommentFragment : Fragment() {
 
     // TODO: Customize parameters
     private var columnCount = 1
@@ -37,7 +40,7 @@ class PostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_post_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_comment_list, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -46,14 +49,14 @@ class PostFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
+
                 val service = ServiceVolley()
-                val url = "http://excercise.born-to-create.de/posts"
+                val url = "http://excercise.born-to-create.de/posts/1/comments"
 
                 service.get(url){
-                    response ->
-                    response?.let { adapter = MyPostRecyclerViewAdapter(JSONUtils.parsePosts(response), listener)}
+                        response ->
+                    response?.let { adapter = MyCommentRecyclerViewAdapter(JSONUtils.parseComments(response), listener)}
                 }
-
             }
         }
         return view
@@ -86,7 +89,7 @@ class PostFragment : Fragment() {
      */
     interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        fun onListFragmentInteraction(item: Post?)
+        fun onListFragmentInteraction(item: Comment?)
     }
 
     companion object {
@@ -97,7 +100,7 @@ class PostFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-            PostFragment().apply {
+            CommentFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
