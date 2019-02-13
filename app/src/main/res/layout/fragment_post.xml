@@ -1,56 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:padding="@dimen/text_margin"
-              android:id="@+id/fragmentPost">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="@dimen/text_margin"
+                  android:id="@+id/fragmentPost">
 
-        <TextView
-            android:text="id"
-            android:id="@+id/item_number"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="id"
+                android:id="@+id/item_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem"/>
+
+            <TextView
+                android:text="title"
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/text_margin"
+                android:textAppearance="?attr/textAppearanceListItem"/>
+
+        </LinearLayout>
 
         <TextView
-            android:text="title"
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
+                android:text="author"
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem"/>
+            android:orientation="horizontal">
+            <com.android.volley.toolbox.NetworkImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="20dp"/>
+            <TextView
+                android:layout_toRightOf="@id/thumbnail"
+                android:text="content"
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_margin"
+                android:textAppearance="?attr/textAppearanceListItem"/>
+        </RelativeLayout>
 
     </LinearLayout>
-
-    <TextView
-            android:text="author"
-            android:id="@+id/author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/thumbnail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxWidth="20dp"/>
-        <TextView
-            android:layout_toRightOf="@id/thumbnail"
-            android:text="content"
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/text_margin"
-            android:textAppearance="?attr/textAppearanceListItem"/>
-    </RelativeLayout>
-
-</LinearLayout>
+</android.support.v7.widget.CardView>
